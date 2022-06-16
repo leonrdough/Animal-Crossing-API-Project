@@ -1,43 +1,60 @@
+async function getItems() {
+    const [fishy, seaCreature, songs, fossils, arts] = await Promise.all ([
+        fetch("http://acnhapi.com/v1a/fish/bitterling"),
+        fetch("http://acnhapi.com/v1a/sea/seaweed"),
+        fetch("http://acnhapi.com/v1a/music/1"),
+        fetch("http://acnhapi.com/v1a/fossils/amber"),
+        fetch("http://acnhapi.com/v1a/art/academic_painting")
+    ])
+    const fishData = await fishy.json()
+    const seaCreatureData = await seaCreature.json()
+    const songsData = await songs.json()
+    const fossilsData = await fossils.json()
+    const artsData = await arts.json()
+    console.log(fishData)
+    console.log(seaCreatureData)
+    console.log(songsData)
+    console.log(fossilsData)
+    console.log(artsData)
+    const itemsListEl = document.querySelector(".items__list")
+    itemsListEl.innerHTML = itemsHTML(fishData, seaCreatureData, songsData, fossilsData, artsData)
 
-// async function main() {
-//     const fishes = await fetch("http://acnhapi.com/v1/fish")
-//     const fishesData = await fishes.json()
-//     console.log(fishesData)
-//     const fishesListEl = document.querySelector(".fish-list")
-//     fishesListEl.innerHTML = fishesData
-//     .map(
-//         (fish) => 
-//         `<div class="fish-card">
-//             <div class="fish-card__container">
-//                 <h3>${fish.id}</h4>
-//                 <p><b>Price:</b> email@email.com</p>
-//                 <p><b>Catch Phrase:</b> 0000000000</p>
-//                 <p><b>Item Phrase:</b> <a href="https://website.website" target="_blank">website.website</a></p>
-//             </div>
-//         </div>`
-//     )
-//     .join("")
-// }
-
-// main()
-const id = localStorage.getItem("id")
-async function fishermen() {
-    const fishes = await fetch(`http://acnhapi.com/v1/fish`)
-    const fishesData = await fishes.json()
-    const fishListEl = document.querySelector(".fish-list")
-    console.log(fishesData)
-    fishListEl.innerHTML = fishesData?.map((fish) => fishHTML(fish) ).join("")
 }
 
-fishermen()
+getItems()
 
-function fishHTML(fish) {
-    return `<div class="fish-card" onclick="showUserPosts(${fish.id})">
-    <div class="fish-card__container">
-        <h3>${fish.name-USen}</h4>
-        <p><b>Email:</b>${fish.email}</p>
-        <p><b>Phone:</b>${fish.phone}</p>
-        <p><b>Website:</b> <a href="https://${fish.website}" target="_blank">${fish.website}</a></p>
-    </div>
+function itemsHTML(fishData, seaCreatureData, songsData, fossilsData, artsData){
+
+    return `<div class="items__list">
+        <div class="items__card">
+            <div class="items__card--container">
+                <h3>FISH</h3>
+                <img src="${fishData.image_uri}">
+            </div>
+        </div>
+        <div class="items__card">
+            <div class="items__card--container">h3>
+                <h3>Sea Creatures</h3>
+                <img src="${seaCreatureData.image_uri}">
+            </div>
+        </div>
+        <div class="items__card">
+            <div class="items__card--container">h3>
+                <h3>Songs</h3>
+                <img src="${songsData.image_uri}">
+            </div>
+        </div>
+        <div class="items__card">
+            <div class="items__card--container">h3>
+                <h3>Fossils</h3>
+                <img src="${fossilsData.image_uri}">
+            </div>
+        </div>
+        <div class="items__card">
+            <div class="items__card--container">h3>
+                <h3>Arts</h3>
+                <img src="${artsData.image_uri}">
+            </div>
+        </div>
     </div>`
 }
