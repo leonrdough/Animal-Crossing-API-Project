@@ -11,6 +11,10 @@ body {
     width: 100%;
     max-width: 1200px;
   }
+
+  .nav__container {
+    margin-bottom: 42px;
+  }
   
   p {
     font-size: 14px;
@@ -25,20 +29,21 @@ body {
     display: none;
   }
   
-  .card-list, .items__list {
+  .card-list {
     width: auto;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
   
-  .card, .items__card {
+  .card {
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     margin: 10px;
     transition: 0.3s;
     cursor: pointer;
     border-radius: 10px;
+    width: 50vh;
   }
   
   .card:hover, .items__card:hover {
@@ -48,6 +53,10 @@ body {
   .card__container, .items__card--container {
     padding: 2px 16px;
     max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
   
   .post-card {
@@ -116,8 +125,12 @@ body {
     width: 100%;
   }
 
-  .card__img--wrapper, .items__img--wrapper {
+  .card__img--wrapper {
     max-width: 70%;
+  }
+
+  .card__img--bigger {
+    width: 341px;
   }
 
   /* 

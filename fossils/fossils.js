@@ -9,7 +9,8 @@ async function getFossils() {
 getFossils()
 
 function fossilsHTML(fossil) {
-    return `<div class="card">
+    return `
+    <div class="card">
         <div class="card__container">
             <h3>${fossil.name["name-USen"]}</h3>
             <figure>
